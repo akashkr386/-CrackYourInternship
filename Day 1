@@ -1,1 +1,87 @@
+//question 1-> Find the Duplicate Number
 
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        int n = nums.size();
+        for(int i=0; i<n; i++){
+            if(nums[i]==nums[i+1])
+            return nums[i];
+        }
+        return 0;
+    }
+};
+
+//question 2-> sort color
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int zero = 0, one = 0, two = 0;
+        for(int i = 0; i < nums.size(); i++){
+            if(nums[i] == 0){
+                zero++;
+            }
+            else if(nums[i] == 1){
+                one++;
+            }
+            else
+            two++;
+        }
+        int i = 0;
+        while(zero>0){
+            nums[i] = 0;
+            i++;
+            zero--;
+        }
+        while(one>0){
+            nums[i] = 1;
+            i++;
+            one--;
+        }
+        while(two>0){
+            nums[i] = 2;
+            i++;
+            two--;
+        }
+    }
+};
+
+//question 3-> Remove Duplicates from Sorted Array
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+       int count = 0;
+       int n  = nums.size();
+       for(int i = 0; i< n; i++){
+        if(i < n-1 && nums[i] == nums[i+1]){
+            continue;
+        }
+        
+        nums[count] = nums[i];
+        count++;
+       } 
+       return count;
+    }
+};
+
+//question 4->  TWO SUM
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int>v;
+        int n = nums.size();
+        for(int i = 0; i<n-1; i++){
+            for(int j = i+1; j<n; j++){
+                if(nums[i]+nums[j] == target){
+                    v.push_back(i);
+                    v.push_back(j);
+                }
+            }
+        }
+        return v;
+    }
+};
