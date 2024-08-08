@@ -24,6 +24,51 @@ class Solution      //time complexity = o(n^2)
             temp = val;
             temp = temp->next;
         }
+
+
+
+method 2
+
+
+class Solution
+{
+    public:
+    
+    Node* reverse(Node* head){
+        Node* prev = NULL;
+        Node* curr = head;
+        while(curr!=NULL){
+           Node* nxt = curr->next;
+           curr->next = prev;
+           prev = curr;
+           curr = nxt;
+        }
+        return prev;
+    }
+    
+    Node *compute(Node *head)
+    {
+        head = reverse(head);
+        int ma = head->data;
+        Node* nxt = head->next;
+        Node* curr = head;
+        Node* prev = head;
+        while(nxt){
+            if(nxt->data >= ma){
+                ma = nxt->data;
+                prev = nxt;
+                nxt = nxt->next;
+            }
+            else{
+                prev->next = nxt->next;
+                nxt = prev->next;
+            }
+        }
+        return reverse(curr);
+        
+    }
+    
+};
         return ans->next;
     }
 };
