@@ -1,1 +1,29 @@
-
+class Solution      //time complexity = o(n^2)
+{                    //space complexity = o(result)
+    public:
+    Node *compute(Node *head)
+    {
+        Node* res = new Node(-1);
+        Node* ans = res;
+        Node* temp = head;
+        while(temp!=NULL){
+            Node* val = temp;
+            bool flag = true;
+            while(temp!=NULL){
+                if(val->data < temp->data){
+                   flag = false;
+                    break; 
+                }
+                temp = temp ->next;
+            }
+            if(flag == true){
+               Node* x = new Node(val->data);
+                res->next = x;
+                res = res->next;
+            }
+            temp = val;
+            temp = temp->next;
+        }
+        return ans->next;
+    }
+};
