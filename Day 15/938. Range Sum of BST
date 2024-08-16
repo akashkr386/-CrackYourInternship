@@ -1,0 +1,22 @@
+class Solution {
+public:
+    void sumTree(TreeNode* root, int low, int high, int &sum){
+        if(root == NULL){
+         return;   
+        }
+        if(root->val >= low && root->val <= high){
+                sum+=root->val;
+        }
+        
+
+        sumTree(root->left, low, high, sum);
+        sumTree(root->right, low, high, sum);
+
+    }
+
+    int rangeSumBST(TreeNode* root, int low, int high) {
+        int sum = 0;
+        sumTree(root, low, high, sum);
+        return sum;
+    }
+};
