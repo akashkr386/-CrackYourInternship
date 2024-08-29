@@ -1,0 +1,44 @@
+class Solution {        //t.c == o(n^2)
+public:                 //s.c =  o(1)
+    vector<vector<int>> threeSum(vector<int>& nums) {
+      vector<vector<int>>ans;
+
+      int n = nums.size();
+      if(n < 3) return {};
+        sort(nums.begin(), nums.end());
+      for(int i = 0; i < n-2; i++){
+            if(i > 0 && nums[i] == nums[i-1])
+            continue;
+
+           int target = -(nums[i]); 
+           int lo = i+1; 
+           int hi = n-1;
+           while(lo < hi){
+                int sum = nums[lo] + nums[hi];
+                if(sum < target){
+                    lo++;
+                }
+                else if(sum > target){
+                    hi--;
+                }
+                else{
+                    
+                    while(lo < hi && nums[lo] == nums[lo+1]){
+                        lo++;
+                    }
+
+                    while(lo < hi && nums[hi] == nums[hi-1]){
+                        hi--;
+                    }
+
+                    vector<int>temp = {-target, nums[lo], nums[hi]};
+                    ans.push_back(temp);
+                    lo++;
+                    hi--;
+                }
+           }
+        }
+        return ans;
+
+    }
+};
