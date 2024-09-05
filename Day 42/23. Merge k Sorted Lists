@@ -1,0 +1,29 @@
+class Solution {            //t.c = O(nlogn) sc- O(n)
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        vector<int>val;
+        int n = lists.size();
+        int i = 0;
+        while(i < n){
+            ListNode* temp = lists[i];
+            while(temp != NULL){
+                val.push_back(temp->val);
+                temp = temp->next;
+            }
+            i++;
+        }
+        ListNode* ans = new ListNode(-1);
+        ListNode* res = ans;
+        n = val.size();
+        i = 0;
+        sort(val.begin(), val.end());
+        while(i < n){
+            ListNode* demo = new ListNode(val[i]);
+            ans->next = demo;
+            ans = ans->next;
+            i++;
+        }
+        ans->next = NULL;
+        return res->next;
+    }
+};
